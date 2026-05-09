@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 文本总结工具</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 标题区 -->
+        <header>
+            <img src="logo.png" alt="logo" class="site-logo">
+            <h1>AI 文本总结工具</h1>
+            <p class="subtitle">输入文本，AI 自动提炼核心内容</p>
+        </header>
+
+        <!-- 输入区 -->
+        <section class="input-section">
+            <label for="textInput">粘贴或输入文本</label>
+            <textarea
+                id="textInput"
+                placeholder="在这里粘贴要总结的文本..."
+                rows="8"
+            ></textarea>
+            <div class="input-footer">
+                <span id="charCount">0 字</span>
+                <div class="input-actions">
+                    <label class="btn-upload" title="支持 .txt 文件">
+                        📎 上传 .txt
+                        <input type="file" id="fileInput" accept=".txt" style="display:none;">
+                    </label>
+                    <button id="clearBtn" class="btn-secondary" disabled>清空</button>
+                </div>
+            </div>
+            <div id="fileNameDisplay" class="file-name" style="display:none;"></div>
+        </section>
+
+        <!-- 操作区 -->
+        <section class="action-section">
+            <div class="mode-selector">
+                <label class="mode-option">
+                    <input type="radio" name="mode" value="normal" checked>
+                    <span>📝 普通总结</span>
+                </label>
+                <label class="mode-option">
+                    <input type="radio" name="mode" value="brief">
+                    <span>⚡ 简短总结</span>
+                </label>
+            </div>
+            <button id="summarizeBtn" class="btn-primary" disabled>
+                <span class="btn-text">开始总结</span>
+                <span class="btn-loading" style="display:none;">AI 思考中...</span>
+            </button>
+        </section>
+
+        <!-- 结果区 -->
+        <section id="resultSection" class="result-section" style="display:none;">
+            <h2>总结结果</h2>
+
+            <div class="result-card">
+                <h3>📌 核心内容</h3>
+                <p id="summaryText"></p>
+            </div>
+
+            <div class="result-card">
+                <h3>🏷️ 关键词</h3>
+                <div id="keywordsContainer" class="keywords"></div>
+            </div>
+
+            <div class="result-footer">
+                <span id="originalLength"></span>
+                <div class="result-actions">
+                    <button id="copyBtn" class="btn-secondary">📋 复制结果</button>
+                    <button id="resetBtn" class="btn-secondary">🔄 重新总结</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 历史记录区 -->
+        <section id="historySection" class="history-section">
+            <h2>📜 历史记录 <span id="historyCount"></span></h2>
+            <div id="historyList" class="history-list"></div>
+        </section>
+
+        <!-- 错误提示区 -->
+        <div id="errorToast" class="toast error" style="display:none;">
+            <span id="errorMessage"></span>
+        </div>
+
+        <!-- 成功提示 -->
+        <div id="successToast" class="toast success" style="display:none;">
+            <span>复制成功！</span>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
